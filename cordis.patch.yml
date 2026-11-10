@@ -1,0 +1,24 @@
+# Prompt vault — a durable, human-readable prompt library.
+#
+# One row, no configuration required: the vault defaults to
+# `<DSH_HOME>/prompt-vault`, so it works the moment the bundle is installed.
+#
+# Point `vaultDir` at an Obsidian vault subfolder (for example
+# `D:/Workspace/Obsidian/提示词`) to keep the same prompts inside Obsidian: the
+# store is plain Markdown with YAML frontmatter, so Obsidian shows them as notes
+# and every other tool that reads the folder sees them too.
+#
+# `vaultDir` is the only setting most users change. The remaining keys are the
+# guard rails on what the plugin is allowed to write.
+- insert:
+    - id: dsh-prompt-vault
+      name: '@local/dsh-prompt-vault'
+      config:
+        # '' means "<DSH_HOME>/prompt-vault".
+        vaultDir: ''
+        # Ignore any file above this size when listing or reading prompts.
+        maxFileBytes: 262144
+        # Keep the last N archived versions of an edited prompt.
+        historyLimit: 20
+        # Write `<name>.md` next to the note on removal instead of deleting it.
+        softDelete: true

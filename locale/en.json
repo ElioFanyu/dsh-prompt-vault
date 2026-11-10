@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "title": "Prompt vault",
+    "description": "Saves reusable prompts as plain Markdown files on this machine (an Obsidian vault folder works too) and inserts them from the composer toolbar; also gives the model a prompt_vault tool to save, read and import prompts."
+  }
+}

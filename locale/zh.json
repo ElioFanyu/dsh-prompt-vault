@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "title": "提示词库",
+    "description": "把常用提示词保存成本机 Markdown 文件（可直接放进 Obsidian 库），在输入框工具栏随时插入复用；同时给模型一个 prompt_vault 工具来保存、读取和导入提示词。"
+  }
+}
