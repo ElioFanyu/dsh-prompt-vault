@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="300" viewBox="0 0 640 300">
+  <defs>
+    <linearGradient id="pv-d-sheet" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#3a4a63"/>
+      <stop offset="1" stop-color="#2b3648"/>
+    </linearGradient>
+    <linearGradient id="pv-d-accent" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#69b9ff"/>
+      <stop offset="1" stop-color="#324de2"/>
+    </linearGradient>
+    <linearGradient id="pv-d-add" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#45e7a4"/>
+      <stop offset="1" stop-color="#05909d"/>
+    </linearGradient>
+  </defs>
+
+  <!-- The panel floats over a dimmed conversation, which is how it appears. -->
+  <rect width="640" height="300" rx="18" fill="#1d2430"/>
+  <rect x="32" y="28" width="180" height="10" rx="5" fill="#39445a"/>
+  <rect x="32" y="50" width="120" height="8" rx="4" fill="#333d51"/>
+  <rect x="32" y="72" width="150" height="8" rx="4" fill="#333d51"/>
+
+  <!-- Vault panel -->
+  <rect x="196" y="24" width="412" height="196" rx="14" fill="url(#pv-d-sheet)" stroke="#4a5a75" stroke-width="1.5"/>
+
+  <!-- Header: title block, then the two header actions -->
+  <rect x="216" y="42" width="96" height="11" rx="5" fill="#dfe7f3"/>
+  <rect x="414" y="38" width="52" height="20" rx="7" fill="#33415a"/>
+  <rect x="422" y="45" width="36" height="6" rx="3" fill="#8fa2bf"/>
+  <rect x="472" y="38" width="56" height="20" rx="7" fill="#33415a"/>
+  <rect x="480" y="45" width="40" height="6" rx="3" fill="#8fa2bf"/>
+  <circle cx="556" cy="48" r="10" fill="#33415a"/>
+  <path d="M556 43.5v6M553 46.5h6" stroke="#9fb3d0" stroke-width="1.8" stroke-linecap="round"/>
+
+  <!-- Search box doubling as the paste target, with its save button -->
+  <rect x="216" y="70" width="316" height="34" rx="9" fill="#26313f" stroke="#4d5f7c" stroke-width="1.5"/>
+  <rect x="230" y="80" width="132" height="7" rx="3.5" fill="#7d8ea9"/>
+  <rect x="230" y="91" width="88" height="6" rx="3" fill="#5c6b84"/>
+  <rect x="540" y="70" width="48" height="34" rx="9" fill="url(#pv-d-add)"/>
+  <path d="M564 79v16M556 87h16" stroke="#0b2b26" stroke-width="2.4" stroke-linecap="round"/>
+
+  <!-- Saved prompt rows: title, two tag chips, preview, then pencil and bin -->
+  <g>
+    <rect x="216" y="116" width="372" height="44" rx="10" fill="#2f3b4d"/>
+    <rect x="230" y="126" width="86" height="9" rx="4.5" fill="#e2e9f4"/>
+    <rect x="324" y="125" width="34" height="11" rx="5" fill="#3f5570"/>
+    <rect x="362" y="125" width="28" height="11" rx="5" fill="#3f5570"/>
+    <rect x="230" y="141" width="196" height="7" rx="3.5" fill="#7a8aa3"/>
+    <rect x="536" y="129" width="16" height="16" rx="4" fill="none" stroke="#9fb3d0" stroke-width="1.6"/>
+    <path d="M541 140l7-7" stroke="#9fb3d0" stroke-width="1.6" stroke-linecap="round"/>
+    <rect x="558" y="129" width="16" height="16" rx="4" fill="none" stroke="#9fb3d0" stroke-width="1.6"/>
+    <path d="M563 134v7M561.5 134h5" stroke="#9fb3d0" stroke-width="1.5" stroke-linecap="round"/>
+  </g>
+  <g>
+    <rect x="216" y="166" width="372" height="44" rx="10" fill="#2a3546"/>
+    <rect x="230" y="176" width="64" height="9" rx="4.5" fill="#cfd9e8"/>
+    <rect x="230" y="191" width="168" height="7" rx="3.5" fill="#6f7f98"/>
+    <rect x="536" y="179" width="16" height="16" rx="4" fill="none" stroke="#8fa2bf" stroke-width="1.6"/>
+    <path d="M541 190l7-7" stroke="#8fa2bf" stroke-width="1.6" stroke-linecap="round"/>
+    <rect x="558" y="179" width="16" height="16" rx="4" fill="none" stroke="#8fa2bf" stroke-width="1.6"/>
+    <path d="M563 184v7M561.5 184h5" stroke="#8fa2bf" stroke-width="1.5" stroke-linecap="round"/>
+  </g>
+
+  <!-- Composer below: clicking a row types that prompt into it. -->
+  <rect x="196" y="228" width="412" height="48" rx="20" fill="#28323f" stroke="#45546d" stroke-width="1.5"/>
+  <rect x="222" y="244" width="150" height="8" rx="4" fill="#8b9bb5"/>
+  <rect x="222" y="258" width="228" height="7" rx="3.5" fill="#63728a"/>
+  <rect x="222" y="244" width="6" height="20" rx="3" fill="url(#pv-d-accent)"/>
+  <circle cx="582" cy="252" r="16" fill="url(#pv-d-accent)"/>
+  <path d="M582 246v12M576.5 252.5l5.5-6 5.5 6" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Link from a row to the composer: reuse is the point of the plugin. -->
+  <path d="M402 194c6 16 12 24 20 28" fill="none" stroke="#45e7a4" stroke-width="2" stroke-linecap="round" stroke-dasharray="5 5"/>
+</svg>

@@ -60,7 +60,7 @@ dsh plugin --profile <profile> add link:<本仓库路径>
 或用 `plugin_manager` 的 `install_bundle`，`target` 传本仓库的绝对路径。
 装完刷新页面，输入框工具栏就会出现「提示词」按钮。
 
-要求 DSH `>=0.2.1-rc.3 <0.3.0-0`，Node `>=20`。
+要求 DSH `>=0.2.1-rc.3 <0.3.0-0`，Node `>=20`。已在 **0.2.2-rc.2** 上适配并验证。
 
 ## 存到哪
 
@@ -122,7 +122,9 @@ dsh-prompt-vault/
   cordis.patch.yml      插入插件行与默认配置
   lib/index.js          Host：存储、frontmatter、HTTP 通道、prompt_vault 工具
   lib/client.js         Client：工具栏按钮、列表、编辑表单、搜索框保存
-  locale/{zh,en}.json   Plugin Manager 里显示的标题与说明
+  locale/{zh,en}.json   Plugin Manager 里显示的标题、说明与详情页声明
+  docs/DETAIL*.md       插件详情页（单图），DETAIL.md 英文 / DETAIL.zh.md 中文
+  docs/preview*.svg     详情页配图（640×300，无文字，中英共用一套画法）
   test/host.test.js     Host 测试：存储、归档、frontmatter、危险 id
   test/ui/              Client 渲染测试（stub React，不是浏览器测试）
   icon.svg              插件图标
@@ -134,17 +136,37 @@ dsh-prompt-vault/
 npm test
 ```
 
-17 个用例，分两类：
+23 个用例，分三类：
 
 - **Host**（`test/host.test.js`）：编辑保持文件名、历史归档是改前内容、历史数量上限、
   外部 frontmatter 不被冲掉、正文里出现 `---` 能原样往返、危险 id 被拒、软删除可找回。
 - **Client**（`test/ui/`）：把 `lib/client.js` 按浏览器的方式加载进 `vm`，用 stub React 渲染
   出真实元素树，检查编辑表单预填、搜索框是 `textarea` 且保留换行、空正文禁用保存、
-  删除需二次确认，以及**每个渲染出来的 class 都有对应样式规则**（拼错的 class 会渲染成
-  无样式控件，语法检查看不出来）。
+  删除需二次确认、portal 声明了 macOS 窗口拖拽排除，以及**每个渲染出来的 class 都有
+  对应样式规则**（拼错的 class 会渲染成无样式控件，语法检查看不出来）。
+- **展示资源**（`test/display.test.js`）：图标是 36×36 且不自带底板、SVG 引用无悬空 id、
+  无脚本/`foreignObject`、locale 声明了 `meta.detail` 且文件真实存在、详情页恰好一行图片、
+  manifest 的 `exports`/`files` 覆盖了这些资源。这些资源由 Plugin Manager 在不激活插件时
+  读取，路径写错只会退化成默认图标，不会报错，所以需要单独测。
 
 这两个 Client 测试**不是浏览器测试**：它们验证结构，不验证视觉。真实渲染需要在
 DSH 里打开面板确认。
+
+## 版本适配记录
+
+按 DSH 升级指南逐条核对过从 `0.2.1-rc.3` 到 `0.2.2-rc.2` 的变更：
+
+| 变更 | 是否影响本插件 |
+| --- | --- |
+| 自定义 Client 浮层需显式声明 macOS 窗口区域 | **是**，已修：面板加上 `data-window-drag-exclude` |
+| `BundleInfo.update` 取代 `updatable` | 否，本插件不读 `listBundles()` |
+| `Session.append` 支持数组重载 | 否，不替换该方法 |
+| 账号通知 / Forge / CUA / 终端 / Web 搜索计费 | 否，均未使用 |
+| `dsh-doc` 取代 Creator 模式技能 | 否，与运行时代码无关 |
+
+`prompt_vault` 工具的 `ctx.tools.register`、HTTP 路由的 `webServer.register`、
+`conversation.input.left` 槽位与 composer 的 `captureInsertion`/`insertText`
+在 0.2.2-rc.2 上逐一复核过，签名不变。
 
 ## 已知限制
 

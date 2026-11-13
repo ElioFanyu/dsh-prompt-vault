@@ -1,6 +1,6 @@
 {
   "name": "@local/dsh-prompt-vault",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "private": true,
   "type": "module",
   "description": "提示词库：把常用提示词保存成 Markdown（本机目录或 Obsidian 库），随时从输入框插入复用。",
@@ -17,8 +17,10 @@
     "lib",
     "cordis.patch.yml",
     "locale/*.json",
+    "docs",
     "icon.svg",
-    "README.md"
+    "README.md",
+    "LICENSE"
   ],
   "dsh": {
     "bundle": {

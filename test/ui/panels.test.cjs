@@ -258,6 +258,21 @@ test('delete needs a second click', () => {
   check('armed row shows a confirm label', /确认删除/.test(textOf(armedOne[0])))
 })
 
+test('the portal declares its own macOS window-drag exclusion', () => {
+  // DSH 0.2.2-rc.1 stopped granting interactive controls an automatic no-drag
+  // exclusion on macOS. A body portal that can cover the draggable header must
+  // declare its own region, or its controls drag the window instead of working.
+  const tree = render({ query: 'abc' })
+  const panels = findAll(tree, 'div', 'pv-panel')
+  check('the panel element is rendered', panels.length === 1, String(panels.length))
+  check('the exclusion sits on the visible box', panels[0].props['data-window-drag-exclude'] === true)
+  const nested = []
+  walk(panels[0], (node) => {
+    if (node.props && node.props['data-window-drag-exclude'] !== undefined) nested.push(node.type)
+  })
+  check('it is declared once, not per descendant', nested.length === 1, nested.join(','))
+})
+
 test('every rendered class has a style rule', () => {
   const css = styleEls[0].textContent
   const defined = new Set([...css.matchAll(/\.([a-zA-Z0-9_-]+)/g)].map((m) => m[1]))
